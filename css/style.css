@@ -1,0 +1,601 @@
+html {
+   box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+   box-sizing: inherit;
+}
+body {
+   font-family: "Lato", sans-serif;
+}
+a {
+   color: #000;
+   display: inline-block;                /* Задаем положение ссылок в линию */
+   text-decoration: none;
+}
+a:hover {
+   color: #2aacc8;
+}
+ul {
+   list-style: none;                     /* Обнуляем параметры списка заданные по умолчанию */
+   padding: 0;
+   margin: 0;
+}
+li {
+   display: inline-block;                /* Задаем положение списка меню в линию */
+}
+.container {
+   max-width: 1030px;
+   margin: 0 auto;
+   padding: 0px 15px;
+}
+
+.header {
+   background-color: #e8ebf1;
+   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.07);
+}
+
+.heder__inner {
+   display: flex;                         /* Вложенные элементы приобретают свойства FLEX элементов */
+   justify-content: space-between;        /* Располоджение FLEX элементов */
+   align-items: center;                   /* Располоджение FLEX элементов */
+   height: 120px;                         /* Высота родителя */
+}
+
+.header__logo a {
+   color: #2aacc8;
+   font-size: 50px;
+   font-weight: 400;
+}
+
+.header__logo a span {
+   color: #000;
+   font-weight: 700;
+}
+
+.header__menu {
+   margin-right: 20px;
+}
+
+.header__menu li + li {
+   margin-left: 50px;
+}
+
+.header__menu a {
+   font-family: "arial", sans-serif;
+   font-weight: 700;
+   font-size: 13px;
+   line-height: 20px;
+   text-transform: uppercase;
+   padding-top: 9px;
+   padding-bottom: 13px;
+}
+
+.header__drop-down {
+   position: relative;
+}
+
+.drop-down__list {                           /* Выпадающее меню */
+   /*display: none; */                           /* 1 вариант Задаем невидимость выпадающего списка меню  */
+   height: 0px;                                 /* 2 Вариант выпадющего меню */
+   overflow: hidden;                            /* Делаем невидимым */
+   opacity: 0;                                  /* Делаем невидимым */
+   position: absolute;
+   width: 200px;
+   background-color: #fff;
+   border: 1px solid rgb(232, 235, 241);   /* Линии подчеркивания в выпадающем меню */
+   border-bottom: 5px solid #2aacc8;       /* Меняет нижнюю т.к выше задан со всех сторон */
+   border-top: none;                         /* Отменяет нижнюю */
+   box-shadow: 0px 5px 0px 0px rgba(42, 172, 200, 0.004);
+   padding: 10px 5px;
+   z-index: 1;
+}
+
+.drop-down__list a {
+   padding: 12px 0px 12px 11px;                 /* Задаем отступы Словам в выпадающем меню */
+   font-weight: 400;
+   display: block;                              /* Ссылки должны быть блочными */
+   text-transform: none;                        /* Отменяем сойства text-transform заданные родителю .header__menu a*/
+}
+
+.drop-down__list a:hover {
+   color: #2aacc8;
+}
+
+.header__drop-down .drop-down__list li {
+   margin-left: 0;                        /* Обнуляет отступ заданный .header__menu li + li { margin-left: 50px;} */
+   display: block;                        /* Список делаем блочным */
+}
+
+.drop-down__list li + li a {
+   border-top: 1px solid #e7e7e7;       /* Задаем подчеркивание Словам в выпадающем меню */
+}
+
+.header__drop-down.drop-down {            /* Назначаются свойства только для элементов имеющих два класса */
+   margin-left: 39px;                     /* переопределили отступ заданный .header__menu li + li */
+}
+
+.header__drop-down.drop-down + .header__drop-down.drop-down {  /* Через плюс задаются свойства соседнему элементу */
+   margin-left: 12px;
+}
+
+.header__drop-down.drop-down + .header__link-blog {              /* Чтоб обойти наследственность */
+   margin-left: 25px;
+}
+
+.header__drop-down > a {
+   position: relative;                      /* Задаем позиционирование боковой стрелочки */
+   padding-left: 11px;
+   padding-right: 26px;
+   border-top: 5px solid transparent;       /* Задаем прозрачные сверху линии чтоб при наведении не прыгал текст */
+}
+
+.header__drop-down > a::after {
+   content: "";
+   position: absolute;                       /* Задаем позиционирование боковой стрелочки */
+   background-image: url(../images/down_arrow.png);
+   width: 7px;                               /* Ширина боковой стрелочки */
+   height: 5px;                              /* Высота боковой стрелочки */
+   right: 8px;                               /* Позиционируем боковую стрелочку */
+   top: 15px;                                /* Позиционируем боковую стрелочку */
+}
+
+.header__drop-down.drop-down:hover .drop-down__list {  /* При наведении выпадает список один из вариантов видимый невидимый*/
+   /*display: block; */                                     /* Невидимое выпадающее меню делается видимым */
+   height: auto;                                    /* 2 Вариант выпадющего меню */
+   overflow: visible;                               /* Делаем видимым */
+   opacity: 1;                                      /* Делаем видимым */
+   transition: all 0.3s;                            /* Transition для второго варианта */
+}
+
+.header__drop-down.drop-down:hover > a {              /* Свойства Services при наведении */
+   color: #2aacc8;
+   border-top: 5px solid #2aacc8;
+   background-color: #fff;
+   /*transition: all 0.1s; */                         /*Transition для первого варианта */
+}
+
+/* Меню бургер для адаптива */
+.header__menu-btn {
+   width: 30px;
+   display: none;
+}
+
+.header__menu-row {
+   width: 100%;
+   background-color: #000;
+   height: 4px;
+   margin-bottom: 4px;
+}
+ 
+/* Слайдер */
+
+.slider {
+   background-color: #81e4ed;
+   padding: 20px 0 10px;    /* Отступы сверху и снизу для внутреннего содержимого */
+   border-top: 1px solid #6ec2ca;
+}
+
+.slider__item {
+   background-image: url(../images/paper_coffee_cup_1000x440.jpg);
+   min-height: 440px;     /* Как у фонового фото */
+   background-position: top center;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+.slider__item-title {
+   font-size: 50px;
+   font-weight: 700;
+   color: #fff;
+   width: 300px;
+   margin-left: 60px;
+   padding-top: 90px;
+}
+
+.slick-dots li button {    /* в F12 вижу что это класс крожочков указателей
+                               и задаю им свои параметры согласно макету */
+   width: 14px;                         
+   height: 14px;
+   border-radius: 50%;
+   background-color: rgba(98,98,98,.5)
+}
+.slick-dots li.slick-active button {   /* Это класс кнопки button указателя кружочка 
+                                          у которого класс slick-dots li при активации 
+                                          становится классом slick-active */
+   background-color: #fff;           /* Задаю им свой цвет при активации */
+}
+
+.slick-dots li button:before {           /* Отключаю :before */
+display: none;
+}
+
+.slick-dots li {
+   margin: 0px 9px;
+   width: auto;
+   height: auto;
+}
+ 
+.items {
+   background-color: #e8ebf1;
+   padding: 60px 0px 50px;
+   border-bottom: 1px solid #d9d9d9;
+}
+
+.items__inner {
+   display: flex;
+   justify-content: space-between;
+}
+
+.item {
+   font-family: "arial", sans-serif;
+   width: 225px;
+}
+
+.item__title {
+   font-size: 15px;
+   font-weight: 700;
+   line-height: 20px;
+   text-transform: uppercase;
+   padding-top: 10px;
+   padding-left: 60px;
+   margin-bottom: 30px;
+   position: relative;
+}
+
+.item__icons {
+   position: absolute;
+   width: 40px;
+   height: 40px;
+   background-color: #2aacc8;
+   border-radius: 50%;
+   top: 0;
+   left: 0;
+   display: flex;               /* Двигаем иконку внутри кружка */
+   justify-content: center;     /* Двигаем иконку внутри кружка */
+   align-items: center;         /* Двигаем иконку внутри кружка */
+}
+
+/*.item__icons img {         Еще один вариант позиционирования иконки внутри кружка
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+} */
+
+.telegram-icons {
+   margin-left: 7px;
+}
+
+.item__text {
+   font-size: 13px;
+   line-height: 20px;
+   color: #363636;
+   margin-bottom: 25px;
+}
+
+.item__link {
+   font-size: 13px;
+   line-height: 20px;
+   padding-left: 13px;
+   color: #2aacc8;
+   position: relative;
+}
+
+.item__link::before {
+   content: '';
+   position: absolute;
+   background-image: url(../images/icons/arrow-right.svg);
+   left: 0;
+   top: 5px;
+   width: 5px;
+   height: 7px;
+}
+
+.works__title {
+   padding: 25px 0px 15px 40px;
+   position: relative;
+   font-family: "arial", sans-serif;
+   font-size: 15px;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.works__title::before {
+   content:'';
+   position: absolute;
+   left: 0;
+   top:20px;
+   background-image: url(../images/slider/cursor.svg);
+   width: 14px;
+   height: 24px;
+}
+
+.works__inner {
+   padding:  20px 0px 40px;
+   border-top: 1px solid #dfe1e5;
+   border-bottom: 1px solid #dfe1e5;
+}
+
+.slick-arrow {
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background-color: #81e4ed;
+}
+
+/* .slick-prev:before {
+   display: none;
+}
+.slick-next:before {
+   display: none;
+} */
+
+.slick-arrow::before {        /* Класс стрелок по умолчанию из слайдера, отключаем их */
+   display: none;
+}
+
+.slick-arrow:hover {
+   background-color: #81e4ed;
+}
+
+.slick-arrow:focus {
+   background-color: #81e4ed;
+}
+
+.slick-next {               /* Позиционируем стрелки это их класс по умолчанию */
+   right: 0;
+   top: -27px;
+}
+
+.slick-prev {
+   right: 31px;
+   top: -27px;
+   left: auto;
+}
+
+.works__inner-item {
+   text-align: center;
+}
+
+.works__inner-box {
+   display: inline-block;   /* Делаем выезжающий слайд при наведении. inlain-block делает его ширину как у родителя */
+   position: relative;     
+}
+
+.works__inner-link {
+   background-color: #2aacc8;
+   height: 0;
+   display: flex;
+   justify-content: center;      /* Центрируем глаз и линк по горизонту */
+   align-items: center;          /* Центрируем глаз и линк по вертикали */
+   position: absolute;           /* absolut задали родителю .works__inner-link */
+   bottom: 0;                    /* Распологаем выезжающий слайд  на картинке */
+   width: 100%;                  /* Распологаем выезжающий слайд  как должно быть при наведении */
+   overflow: hidden;
+   transition: all 0.5s;
+}
+
+.works__inner-link a {
+   margin: 0px 15px;             /* Задали растояние между глазом и линком */
+}
+
+.works__inner-box:hover .works__inner-link {
+   height: 80px;                 /* Размер выезжающего слайда */
+}
+
+.slick-list {                /* Это родитель всего слайда который образовался по умолчанию   */
+   margin-left: -15px;       /* Центрируем его иначе он имеет по краям отступы   */
+   margin-right: -15px;      /* Центрируем его иначе он имеет по краям отступы    */
+}
+
+.clients {
+   padding: 0px 0px 40px;
+
+}
+
+.clients__inner {
+   display: flex;
+   justify-content: space-between;
+}
+
+.testimonials {
+   max-width: 440px;
+}
+
+.testimonials__title {
+   padding: 25px 0px 15px 40px;
+   position: relative;
+   font-family: "arial", sans-serif;
+   font-size: 15px;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.testimonials__title::before {
+   content:'';
+   position: absolute;
+   left: 0;
+   top:20px;
+   background-image: url(../images/clients/client-test.svg);
+   width: 24px;
+   height: 22px;
+}
+
+.testimonials p {
+   font-family: "arial", sans-serif;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 24px;
+   color: #363636;
+}
+
+.testimonials span {
+   display: block;
+   padding-top: 30px;
+   font-family: "arial", sans-serif;
+   font-style: italic;
+   font-weight: 700;
+}
+
+.clients-logo__title {
+   padding: 25px 0px 15px 40px;
+   position: relative;
+   font-family: "arial", sans-serif;
+   font-size: 15px;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.clients-logo__title::before {
+   content:'';
+   position: absolute;
+   left: 0;
+   top:20px;
+   background-image: url(../images/clients/clients-our.svg);
+   width: 24px;
+   height: 20px;
+}
+
+ .download {
+   margin-top: 40px;
+   padding: 30px 40px 30px 30px;
+   border: 1px solid #81e4ed;
+   background-color: #e8fcfe;
+   display: flex;
+   justify-content: space-between;
+}
+
+.download__text {
+   font-family: "arial", sans-serif;
+   font-size: 16px;
+   line-height: 26px;
+   color: #363636;
+   max-width: 620px;
+}
+
+.download__btn a {
+   font-family: "arial", sans-serif;
+   font-size: 18px;
+   line-height: 20px;
+   font-weight: 700;
+   text-transform: uppercase;
+   padding: 20px 20px 20px 70px;
+   position: relative;
+   border: 1px solid rgb(42, 172, 200);
+   border-radius: 8px;
+   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2),inset 0px 2px 1px 0px rgba(255, 255, 255, 0.1);
+   background: linear-gradient( to top, rgb(42,172,200) 0%, rgb(96,206,222) 15%, rgb(114,218,230) 50%, rgb(129,228,237) 100%);
+}
+
+
+.download__btn a::before {
+   content: '';
+   position: absolute;
+   background-image: url(../images/clients/download.svg);
+   width: 28px;
+   height: 25px;
+   left: 19px;
+   top: 16px;
+}
+
+.footer {
+   background-color: #e8ebf1;
+   padding-top: 30px;
+   padding-bottom: 40px;
+   border-top: 1px solid #d9d9d9;
+}
+
+.footer__inner {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 35px;
+   font-family: "arial", sans-serif;
+   font-size: 14px;
+   color: #363636;
+}
+
+.footer__item-content {
+   width: 240px;
+}
+
+.footer__text {
+   padding-top: 25px;
+   line-height: 20px;
+}
+
+.footer__item-title {
+   color: #000;
+   font-size: 15px;
+   line-height: 20px;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.footer__item-list {
+   width: 115px;
+}
+
+.footer__list {
+   padding-top: 10px;
+}
+
+.footer__list li {
+display: block;
+}
+
+.footer__list a {
+   line-height: 26px;
+}
+
+.footer__item-contact {
+   width: 150px;
+}
+
+.footer__adress {
+   padding-top: 25px;
+   margin-bottom: 16px;
+}
+
+.footer__adress span {
+   display: block;
+   font-weight: 700;
+}
+
+.footer__item-social {
+ width: 185px;
+}
+
+.footer__social {
+   padding-top: 15px;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+.footer__bottom {
+   display: flex;
+   justify-content: space-between;
+}
+
+.footer__copy {
+   font-family: "arial", sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+   font-weight: 400;
+   color: #363636;
+   max-width: 650px;
+}
+
+.footer__logo a{
+   color: #2aacc8;
+   font-size: 36px;
+   font-weight: 400;
+}
+
+.footer__logo a span {
+   color: #000;
+   font-weight: 700;
+   line-height: 20px;
+}
